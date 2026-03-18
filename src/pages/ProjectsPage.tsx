@@ -4,9 +4,11 @@ import { ExternalLink, Filter } from 'lucide-react';
 import AnimatedPage from '../components/ui/AnimatedPage';
 import SectionHeading from '../components/ui/SectionHeading';
 import Card from '../components/ui/Card';
-import { projects, type Project } from '../data/projects';
+import { projects } from '../data/projects';
 
-type FilterType = 'all' | Project['pillar'] | Project['status'];
+type FilterType = 'all' | 'tech' | 'operations' | 'health' |
+  'environmental-health' | 'operations-management' | 'digital-builder' |
+  'web' | 'data' | 'tool' | 'process' | 'learning' | string;
 
 const pillarLabels: Record<string, string> = {
   'environmental-health': 'Environmental Health',
@@ -57,11 +59,10 @@ export default function ProjectsPage() {
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  activeFilter === filter.value
-                    ? 'bg-primary text-white shadow-md shadow-primary/25'
-                    : 'bg-gray-100 dark:bg-surface-card text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-surface-border'
-                }`}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${activeFilter === filter.value
+                  ? 'bg-primary text-white shadow-md shadow-primary/25'
+                  : 'bg-gray-100 dark:bg-surface-card text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-surface-border'
+                  }`}
               >
                 {filter.label}
               </button>
@@ -82,7 +83,7 @@ export default function ProjectsPage() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className={`h-full border-l-4 ${pillarColors[project.pillar]}`}>
+                <Card className={`h-full border-l-4 ${pillarColors[project.pillar ?? 'tech']}`}>
                   <div className="flex flex-col h-full">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-3">
@@ -115,7 +116,7 @@ export default function ProjectsPage() {
 
                     {/* Pillar Label */}
                     <p className="text-xs font-medium text-gray-500 dark:text-gray-500 mb-3">
-                      {pillarLabels[project.pillar]}
+                      {project.pillar ? pillarLabels[project.pillar] : ''}
                     </p>
 
                     {/* Tags */}
