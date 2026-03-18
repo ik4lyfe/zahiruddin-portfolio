@@ -2,7 +2,7 @@
 
 Personal portfolio website built with React, TypeScript, and Tailwind CSS.
 
-🌐 Live site: https://zahiruddin-portfolio.vercel.app
+🌐 Live site: https://www.zahiruddinzaki.tech/
 
 ## About
 
