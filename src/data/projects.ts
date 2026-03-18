@@ -12,6 +12,7 @@ export interface Project {
   link?: string;
   github?: string;
   image?: string;
+  pillar?: 'tech' | 'operations' | 'health';
 }
 
 export const projectFilters = [
